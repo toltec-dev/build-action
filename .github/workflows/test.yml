@@ -18,12 +18,12 @@ jobs:
       - uses: ./
       - shell: bash
         run: |
-          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/bar_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/bar_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/bar_0.0.0-1_rmall.ipk ]
   test-path:
     name: Test path
     runs-on: ubuntu-latest
@@ -40,12 +40,12 @@ jobs:
       - shell: bash
         run: |
           cd test
-          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/bar_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/bar_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/bar_0.0.0-1_rmall.ipk ]
   test-vebose:
     name: Test verbose
     runs-on: ubuntu-latest
@@ -57,12 +57,12 @@ jobs:
           verbose: true
       - shell: bash
         run: |
-          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/bar_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/bar_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/bar_0.0.0-1_rmall.ipk ]
   test-arch:
     name: Test arch
     runs-on: ubuntu-latest
@@ -74,12 +74,12 @@ jobs:
           arch: rmall
       - shell: bash
         run: |
-          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
-          ! [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
-          ! [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
-          ! [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
-          ! [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/foo_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm1/foo_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm2/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/bar_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm1/bar_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm2/bar_0.0.0-1_rmall.ipk ]
   test-package:
     name: Test package
     runs-on: ubuntu-latest
@@ -88,15 +88,15 @@ jobs:
         uses: actions/checkout@v4
       - uses: ./
         with:
-          package: example
+          package: foo
       - shell: bash
         run: |
-          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
-          ! [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
-          ! [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
-          ! [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/foo_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rmall/bar_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm1/bar_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm2/bar_0.0.0-1_rmall.ipk ]
   test-warnings:
     name: Test warnings
     runs-on: ubuntu-latest
@@ -108,9 +108,9 @@ jobs:
           warnings: error
       - shell: bash
         run: |
-          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
-          [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
-          [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/foo_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/bar_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/bar_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/bar_0.0.0-1_rmall.ipk ]
