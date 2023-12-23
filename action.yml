@@ -55,7 +55,8 @@ runs:
     - name: Parse arguments
       id: args
       shell: bash
-      run: ${{ github.action_path }}/args.sh
+      run: ./args.sh
+      working-directory: ${{ github.action_path }}
       env:
         arch: ${{ inputs.arch }}
         package: ${{ inputs.package }}
@@ -70,7 +71,6 @@ runs:
     - name: Build package
       shell: bash
       run: |
-        cd "$package_dir"
         toltecmk \
           ${{ inputs.verbose && '--verbose' || '' }} \
           --work-dir "$work_dir" \
@@ -80,7 +80,7 @@ runs:
           ${{ join(fromJSON(steps.args.outputs.package), ' ') }} \
           ${{ join(fromJSON(steps.args.outputs.hook), ' ') }}
       env:
-        package_dir: ${{ inputs.path }}
         work_dir: ${{ inputs.work_dir }}
         dist_dir: ${{ inputs.dist_dir }}
         warnings: ${{ inputs.warnings }}
+      working-directory: ${{ inputs.path }}
