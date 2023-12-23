@@ -4,7 +4,6 @@
 
 archs=(rm1 rm2 rmall)
 pkgnames=(foo bar)
-pkgdesc="Example package"
 url=https://toltec-dev.org/
 pkgver=0.0.0-1
 timestamp=2023-12-23T20:46:51Z
@@ -15,12 +14,20 @@ image=base:v3.1
 source=()
 sha256sums=()
 
-build() { true }
+build() {
+    true
+}
 
 foo() {
-    package() { true }
+    pkgdesc="Foo"
+    package() {
+        true
+    }
 }
 bar() {
-    package() { true }
+    pkgdesc="Bar"
+    package() {
+        true
+    }
 }
 
