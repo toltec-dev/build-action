@@ -9,7 +9,7 @@ toFlagsArray() {
   echo "$2" | prepend "--${1}" | toArray
 }
 setOutputVar() {
-  echo "${1}=$2" | tee -a "$GITHUB_OUTPUT"
+  echo "${1}=$2" | tee -a "$GITHUB_OUTPUT" &> /dev/null
 }
 
 
