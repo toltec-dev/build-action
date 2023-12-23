@@ -55,7 +55,7 @@ runs:
     - name: Parse arguments
       id: args
       shell: bash
-      run: src/args.sh
+      run: args.sh
       env:
         arch: ${{ inputs.arch }}
         package: ${{ inputs.package }}
