@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 archs=(rm1 rm2 rmall)
-pkgnames=(example)
+pkgnames=(example test)
 pkgdesc="Example package"
 url=https://toltec-dev.org/
 pkgver=0.0.0-1
@@ -15,10 +15,11 @@ image=base:v3.1
 source=()
 sha256sums=()
 
-build() {
-    true
+build() { true }
+example() {
+    package() { true }
+}
+test() {
+    package() { true }
 }
 
-package() {
-    true
-}

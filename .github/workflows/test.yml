@@ -16,6 +16,14 @@ jobs:
       - name: Checkout the Git repository
         uses: actions/checkout@v4
       - uses: ./
+      - shell: bash
+        run: |
+          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
   test-path:
     name: Test path
     runs-on: ubuntu-latest
@@ -29,6 +37,15 @@ jobs:
       - uses: ./
         with:
           path: ${{ github.workspace }}/test
+      - shell: bash
+        run: |
+          cd test
+          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
   test-vebose:
     name: Test verbose
     runs-on: ubuntu-latest
@@ -38,6 +55,14 @@ jobs:
       - uses: ./
         with:
           verbose: true
+      - shell: bash
+        run: |
+          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
   test-arch:
     name: Test arch
     runs-on: ubuntu-latest
@@ -47,6 +72,14 @@ jobs:
       - uses: ./
         with:
           arch: rmall
+      - shell: bash
+        run: |
+          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
   test-package:
     name: Test package
     runs-on: ubuntu-latest
@@ -56,6 +89,14 @@ jobs:
       - uses: ./
         with:
           package: example
+      - shell: bash
+        run: |
+          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
+          ! [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
   test-warnings:
     name: Test warnings
     runs-on: ubuntu-latest
@@ -65,3 +106,11 @@ jobs:
       - uses: ./
         with:
           warnings: error
+      - shell: bash
+        run: |
+          [ -f dist/rmall/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/example_0.0.0-1_rmall.ipk ]
+          [ -f dist/rmall/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm1/test_0.0.0-1_rmall.ipk ]
+          [ -f dist/rm2/test_0.0.0-1_rmall.ipk ]
