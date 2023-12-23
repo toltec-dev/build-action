@@ -1,0 +1,60 @@
+name: build
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test-basic:
+    name: Test basic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v4
+      - uses: ./
+        with:
+          path: ${{ github.workspace }}/test
+  test-vebose:
+    name: Test verbose
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v4
+      - uses: ./
+        with:
+          path: ${{ github.workspace }}/test
+          verbose: true
+  test-arch:
+    name: Test arch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v4
+      - uses: ./
+        with:
+          path: ${{ github.workspace }}/test
+          arch: rm1
+  test-package:
+    name: Test package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v4
+      - uses: ./
+        with:
+          path: ${{ github.workspace }}/test
+          package: example
+  test-warnings:
+    name: Test warnings
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v4
+      - uses: ./
+        with:
+          path: ${{ github.workspace }}/test
+          warnings: error

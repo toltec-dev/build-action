@@ -1,0 +1,89 @@
+name: 'toltecmk-action'
+description: Build a package with toltecmk for the reMarkable tablet
+author: Eeems
+branding:
+  icon: tablet
+  color: white
+inputs:
+  path:
+    description: Path to the folder to build
+    required: false
+    default: ${{ github.workspace }}
+  work_dir:
+    description: Path to a directory used for building the package.
+    required: false
+    default: ./build
+  dist_dir:
+    description: Path to a directory where built packages are stored.
+    required: false
+    default: ./dist
+  arch:
+    description: List of architectures to build.
+    required: false
+  package:
+    description: List of packages to build.
+    required: false
+  hook:
+    description: |
+      Names or paths to a Python module that registers
+      listeners for build hooks. Paths must start with
+      either a dot or a slash.
+    required: false
+  verbose:
+    description: Show debugging information.
+    required: false
+    type: boolean
+    default: false
+  warnings:
+    description: |
+      Control warnings. 'default' sends warnings to stderr
+      and removes duplicate warnings, 'ignore' silences any
+      warning, and 'error' turns warnings into exceptions.
+    required: false
+    default: default
+    type: choice
+    options:
+      - default
+      - error
+      - ignore
+runs:
+  using: composite
+  steps:
+    - name: Parse arguments
+      id: args
+      shell: bash
+      run |
+        prepend() { xargs -rn1 echo "$1" }
+        toArray() { jq --raw-input | jq --slurp '.' }
+        withFlag() { echo "$2" | prepend "--${1}" | toArray }
+        echo "arch=$(withFlag --arch-name "$arch")" >> "$GITHUB_OUTPUT"
+        echo "package=$(withFlag --package-name "$package")" >> "$GITHUB_OUTPUT"
+        echo "hook=$(withFlag --hook "$hook")" >> "$GITHUB_OUTPUT"
+      env:
+        arch: ${{ inputs.arch }}
+        package: ${{ inputs.package }}
+        hook: ${{ inputs.hook }}
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Install toltecmk
+      shell: bash
+      run: pip install toltecmk
+    - name: Build package
+      shell: bash
+      run: |
+        cd "$package_dir"
+        toltecmk \
+          ${{ inputs.verbose && '--verbose' || '' }} \
+          --work-dir "$work_dir" \
+          --dist-dir "$dist_dir" \
+          --warnings "$warnings" \
+          ${{ join(fromJSON(steps.args.outputs.arch), ' ') }} \
+          ${{ join(fromJSON(steps.args.outputs.package), ' ') }}
+          ${{ join(fromJSON(steps.args.outputs.hook), ' ') }}
+      env:
+        package_dir: ${{ inputs.path }}
+        work_dir: ${{ inputs.work_dir }}
+        dist_dir: ${{ inputs.dist_dir }}
+        warnings: ${{ inputs.warnings }}
