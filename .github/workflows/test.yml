@@ -16,6 +16,17 @@ jobs:
       - name: Checkout the Git repository
         uses: actions/checkout@v4
       - uses: ./
+  test-path:
+    name: Test path
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v4
+      - shell: bash
+        run: |
+          mkdir test
+          cp -l package test/package
+      - uses: ./
         with:
           path: ${{ github.workspace }}/test
   test-vebose:
@@ -26,7 +37,6 @@ jobs:
         uses: actions/checkout@v4
       - uses: ./
         with:
-          path: ${{ github.workspace }}/test
           verbose: true
   test-arch:
     name: Test arch
@@ -36,7 +46,6 @@ jobs:
         uses: actions/checkout@v4
       - uses: ./
         with:
-          path: ${{ github.workspace }}/test
           arch: rm1
   test-package:
     name: Test package
@@ -46,7 +55,6 @@ jobs:
         uses: actions/checkout@v4
       - uses: ./
         with:
-          path: ${{ github.workspace }}/test
           package: example
   test-warnings:
     name: Test warnings
@@ -56,5 +64,4 @@ jobs:
         uses: actions/checkout@v4
       - uses: ./
         with:
-          path: ${{ github.workspace }}/test
           warnings: error
