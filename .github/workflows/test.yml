@@ -23,11 +23,11 @@ jobs:
           cd dist
           tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
-          exists rm1/foo_0.0.0-1_rmall.ipk
-          exists rm2/foo_0.0.0-1_rmall.ipk
+          exists rm1/foo_0.0.0-1_rm1.ipk
+          exists rm2/foo_0.0.0-1_rm2.ipk
           exists rmall/bar_0.0.0-1_rmall.ipk
-          exists rm1/bar_0.0.0-1_rmall.ipk
-          exists rm2/bar_0.0.0-1_rmall.ipk
+          exists rm1/bar_0.0.0-1_rm1.ipk
+          exists rm2/bar_0.0.0-1_rm2.ipk
   test-path:
     name: Test path
     runs-on: ubuntu-20.04
@@ -49,11 +49,11 @@ jobs:
           cd test/dist
           tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
-          exists rm1/foo_0.0.0-1_rmall.ipk
-          exists rm2/foo_0.0.0-1_rmall.ipk
+          exists rm1/foo_0.0.0-1_rm1.ipk
+          exists rm2/foo_0.0.0-1_rm2.ipk
           exists rmall/bar_0.0.0-1_rmall.ipk
-          exists rm1/bar_0.0.0-1_rmall.ipk
-          exists rm2/bar_0.0.0-1_rmall.ipk
+          exists rm1/bar_0.0.0-1_rm1.ipk
+          exists rm2/bar_0.0.0-1_rm2.ipk
   test-vebose:
     name: Test verbose
     runs-on: ubuntu-20.04
@@ -70,11 +70,11 @@ jobs:
           cd dist
           tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
-          exists rm1/foo_0.0.0-1_rmall.ipk
-          exists rm2/foo_0.0.0-1_rmall.ipk
+          exists rm1/foo_0.0.0-1_rm1.ipk
+          exists rm2/foo_0.0.0-1_rm2.ipk
           exists rmall/bar_0.0.0-1_rmall.ipk
-          exists rm1/bar_0.0.0-1_rmall.ipk
-          exists rm2/bar_0.0.0-1_rmall.ipk
+          exists rm1/bar_0.0.0-1_rm1.ipk
+          exists rm2/bar_0.0.0-1_rm2.ipk
   test-arch:
     name: Test arch
     runs-on: ubuntu-20.04
@@ -91,11 +91,11 @@ jobs:
           cd dist
           tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
-          missing rm1/foo_0.0.0-1_rmall.ipk
-          missing rm2/foo_0.0.0-1_rmall.ipk
+          missing rm1/foo_0.0.0-1_rm1.ipk
+          missing rm2/foo_0.0.0-1_rm2.ipk
           exists rmall/bar_0.0.0-1_rmall.ipk
-          missing rm1/bar_0.0.0-1_rmall.ipk
-          missing rm2/bar_0.0.0-1_rmall.ipk
+          missing rm1/bar_0.0.0-1_rm1.ipk
+          missing rm2/bar_0.0.0-1_rm2.ipk
   test-package:
     name: Test package
     runs-on: ubuntu-20.04
@@ -112,11 +112,11 @@ jobs:
           cd dist
           tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
-          exists rm1/foo_0.0.0-1_rmall.ipk
-          exists rm2/foo_0.0.0-1_rmall.ipk
+          exists rm1/foo_0.0.0-1_rm1.ipk
+          exists rm2/foo_0.0.0-1_rm2.ipk
           missing rmall/bar_0.0.0-1_rmall.ipk
-          missing rm1/bar_0.0.0-1_rmall.ipk
-          missing rm2/bar_0.0.0-1_rmall.ipk
+          missing rm1/bar_0.0.0-1_rm1.ipk
+          missing rm2/bar_0.0.0-1_rm2.ipk
   test-warnings:
     name: Test warnings
     runs-on: ubuntu-20.04
@@ -133,8 +133,8 @@ jobs:
           cd dist
           tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
-          exists rm1/foo_0.0.0-1_rmall.ipk
-          exists rm2/foo_0.0.0-1_rmall.ipk
+          exists rm1/foo_0.0.0-1_rm1.ipk
+          exists rm2/foo_0.0.0-1_rm2.ipk
           exists rmall/bar_0.0.0-1_rmall.ipk
-          exists rm1/bar_0.0.0-1_rmall.ipk
-          exists rm2/bar_0.0.0-1_rmall.ipk
+          exists rm1/bar_0.0.0-1_rm1.ipk
+          exists rm2/bar_0.0.0-1_rm2.ipk
