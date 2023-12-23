@@ -77,7 +77,7 @@ runs:
           --dist-dir "$dist_dir" \
           --warnings "$warnings" \
           ${{ join(fromJSON(steps.args.outputs.arch), ' ') }} \
-          ${{ join(fromJSON(steps.args.outputs.package), ' ') }}
+          ${{ join(fromJSON(steps.args.outputs.package), ' ') }} \
           ${{ join(fromJSON(steps.args.outputs.hook), ' ') }}
       env:
         package_dir: ${{ inputs.path }}
