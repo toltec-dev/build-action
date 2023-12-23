@@ -56,7 +56,7 @@ runs:
       id: args
       shell: bash
       run: |
-        source "${{github.action_path}}/lib.sh"
+        source lib.sh
         setOutputVar \
           arch \
           "$(toFlagsArray arch-name "$arch")"
