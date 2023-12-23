@@ -55,7 +55,7 @@ runs:
     - name: Parse arguments
       id: args
       shell: bash
-      run |
+      run: |
         prepend() { xargs -rn1 echo "$1" }
         toArray() { jq --raw-input | jq --slurp '.' }
         withFlag() { echo "$2" | prepend "--${1}" | toArray }
