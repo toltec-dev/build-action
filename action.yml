@@ -20,15 +20,18 @@ inputs:
   arch:
     description: List of architectures to build.
     required: false
+    default: ''
   package:
     description: List of packages to build.
     required: false
+    default: ''
   hook:
     description: |
       Names or paths to a Python module that registers
       listeners for build hooks. Paths must start with
       either a dot or a slash.
     required: false
+    default: ''
   verbose:
     description: Show debugging information.
     required: false
