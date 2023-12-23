@@ -57,7 +57,7 @@ runs:
       shell: bash
       run: |
         prepend() { xargs -rn1 echo "$1" }
-        toArray() { jq --raw-input | jq --slurp '.' }
+        toArray() { jq --raw-input | jq --compact-output --slurp '.' }
         withFlag() { echo "$2" | prepend "--${1}" | toArray }
         echo "arch=$(withFlag --arch-name "$arch")" >> "$GITHUB_OUTPUT"
         echo "package=$(withFlag --package-name "$package")" >> "$GITHUB_OUTPUT"
