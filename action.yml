@@ -55,17 +55,7 @@ runs:
     - name: Parse arguments
       id: args
       shell: bash
-      run: |
-        source lib.sh
-        setOutputVar \
-          arch \
-          "$(toFlagsArray arch-name "$arch")"
-        setOutputVar \
-          package \
-          "$(toFlagsArray package-name "$package")"
-        setOutputVar \
-          hook \
-          "$(toFlagsArray hook "$hook")"
+      run: src/args.sh
       env:
         arch: ${{ inputs.arch }}
         package: ${{ inputs.package }}
