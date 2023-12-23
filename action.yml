@@ -58,12 +58,18 @@ runs:
       run: |
         prepend() { xargs -rn1 echo "$1" }
         toArray() { jq --raw-input | jq --compact-output --slurp '.' }
-        withFlag() { echo "$2" | prepend "--${1}" | toArray }
-        nameWithFlag() { echo "${1}=$(withFlag "$2" "$3")" }
+        toFlagsArray() { echo "$2" | prepend "--${1}" | toArray }
+        setOutputVar() { echo "${1}='$2'" | tee -a "$GITHUB_OUTPUT" }
 
-        nameWithFlag arch --arch-name "$arch" | tee -a "$GITHUB_OUTPUT"
-        nameWithFlag package --package-name "$package" | tee -a "$GITHUB_OUTPUT"
-        nameWithFlag hook --hook "$hook" | tee -a "$GITHUB_OUTPUT"
+        setOutputVar \
+          arch \
+          "$(toFlagsArray arch-name "$arch")"
+        setOutputVar \
+          package \
+          "$(toFlagsArray package-name "$package")"
+        setOutputVar \
+          hook \
+          "$(toFlagsArray hook "$hook")"
       env:
         arch: ${{ inputs.arch }}
         package: ${{ inputs.package }}
