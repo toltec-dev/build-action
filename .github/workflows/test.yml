@@ -21,6 +21,7 @@ jobs:
         run: |
           source lib.sh
           cd dist
+          tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
           exists rm1/foo_0.0.0-1_rmall.ipk
           exists rm2/foo_0.0.0-1_rmall.ipk
@@ -46,6 +47,7 @@ jobs:
         run: |
           source lib.sh
           cd test/dist
+          tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
           exists rm1/foo_0.0.0-1_rmall.ipk
           exists rm2/foo_0.0.0-1_rmall.ipk
@@ -66,6 +68,7 @@ jobs:
         run: |
           source lib.sh
           cd dist
+          tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
           exists rm1/foo_0.0.0-1_rmall.ipk
           exists rm2/foo_0.0.0-1_rmall.ipk
@@ -86,6 +89,7 @@ jobs:
         run: |
           source lib.sh
           cd dist
+          tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
           missing rm1/foo_0.0.0-1_rmall.ipk
           missing rm2/foo_0.0.0-1_rmall.ipk
@@ -106,6 +110,7 @@ jobs:
         run: |
           source lib.sh
           cd dist
+          tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
           exists rm1/foo_0.0.0-1_rmall.ipk
           exists rm2/foo_0.0.0-1_rmall.ipk
@@ -126,6 +131,7 @@ jobs:
         run: |
           source lib.sh
           cd dist
+          tree .
           exists rmall/foo_0.0.0-1_rmall.ipk
           exists rm1/foo_0.0.0-1_rmall.ipk
           exists rm2/foo_0.0.0-1_rmall.ipk
