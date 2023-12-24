@@ -21,13 +21,13 @@ build() {
 foo() {
     pkgdesc="Foo"
     package() {
-        true
+        touch "$pkgdir"/foo
     }
 }
 bar() {
     pkgdesc="Bar"
     package() {
-        true
+        touch "$pkgdir"/bar
     }
 }
 

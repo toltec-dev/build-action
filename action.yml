@@ -73,8 +73,8 @@ runs:
       run: |
         toltecmk \
           ${{ inputs.verbose && '--verbose' || '' }} \
-          --work-dir "$work_dir" \
-          --dist-dir "$dist_dir" \
+          --work-dir "$(realpath "$work_dir")" \
+          --dist-dir "$(realpath "$dist_dir")" \
           --warnings "$warnings" \
           ${{ join(fromJSON(steps.args.outputs.arch), ' ') }} \
           ${{ join(fromJSON(steps.args.outputs.package), ' ') }} \

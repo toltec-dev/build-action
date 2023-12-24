@@ -138,3 +138,41 @@ jobs:
           exists rmall/bar_0.0.0-1_rmall.ipk
           exists rm1/bar_0.0.0-1_rm1.ipk
           exists rm2/bar_0.0.0-1_rm2.ipk
+  test-install:
+    name: Test install of built package
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v4
+      - uses: ./
+        with:
+          arch: rmall
+          package: foo
+      - name: Validate output
+        shell: bash
+        run: |
+          source lib.sh
+          cd dist
+          tree .
+          exists rmall/foo_0.0.0-1_rmall.ipk
+          missing rm1/foo_0.0.0-1_rm1.ipk
+          missing rm2/foo_0.0.0-1_rm2.ipk
+          missing rmall/bar_0.0.0-1_rmall.ipk
+          missing rm1/bar_0.0.0-1_rm1.ipk
+          missing rm2/bar_0.0.0-1_rm2.ipk
+      - uses: Eeems-Org/run-in-remarkable-action@v1
+        with:
+          setup: |
+            set -ex
+            echo "src/gz local-rmall file:///opt/tmp/src" > /opt/etc/opkg.conf.d/16-local.conf
+          run: |
+            set -ex
+            echo Y | toltecctl generate-opkg-conf
+            opkg update
+            opkg install foo
+            if ! [ -f /foo ]; then
+              echo "/foo not found!"
+              exit 1
+            fi
+            opkg remove foo
+          path: ${{ steps.download.outputs.download-path }}
