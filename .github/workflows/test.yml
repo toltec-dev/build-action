@@ -171,4 +171,4 @@ jobs:
               echo "::error::/foo found after package removed!"
               exit 1
             fi
-          path: ${{ steps.download.outputs.download-path }}
+          path: dist/rmall
