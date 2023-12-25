@@ -148,6 +148,7 @@ jobs:
         with:
           arch: rmall
           package: foo
+      - run: tree .
       - uses: Eeems-Org/run-in-remarkable-action@v1
         with:
           path: dist/rmall
