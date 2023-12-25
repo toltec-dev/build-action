@@ -155,12 +155,20 @@ jobs:
             echo "src/gz local-rmall file:///opt/tmp/src" > /opt/etc/opkg.conf.d/16-local.conf
           run: |
             set -ex
+            if [ -f /foo ]; then
+              echo "::error::/foo found before package installed!"
+              exit 1
+            fi
             echo Y | toltecctl generate-opkg-conf
             opkg update
             opkg install foo
             if ! [ -f /foo ]; then
-              echo "/foo not found!"
+              echo "::error::/foo not found after package install!"
               exit 1
             fi
             opkg remove foo
+            if [ -f /foo ]; then
+              echo "::error::/foo found after package removed!"
+              exit 1
+            fi
           path: ${{ steps.download.outputs.download-path }}
