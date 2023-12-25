@@ -12,11 +12,11 @@ inputs:
   work_dir:
     description: Path to a directory used for building the package.
     required: false
-    default: ./build
+    default: build
   dist_dir:
     description: Path to a directory where built packages are stored.
     required: false
-    default: ./dist
+    default: dist
   arch:
     description: List of architectures to build.
     required: false

@@ -150,6 +150,7 @@ jobs:
           package: foo
       - uses: Eeems-Org/run-in-remarkable-action@v1
         with:
+          path: dist/rmall
           setup: |
             set -ex
             echo "src/gz local-rmall file:///opt/tmp/src" > /opt/etc/opkg.conf.d/16-local.conf
@@ -171,4 +172,3 @@ jobs:
               echo "::error::/foo found after package removed!"
               exit 1
             fi
-          path: dist/rmall
